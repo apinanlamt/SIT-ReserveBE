@@ -1,31 +1,26 @@
 import db from "../config/database.js"
 
-const room_id = 1;
-export const createBooking = async (bookingData) => {
-  const { roomId, bookingDate, startTime, endTime, status } = bookingData;
-  const query = `
-    INSERT INTO bookings (room_id, booking_date, start_time, end_time, status)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-  await db.promise(query, [roomId, bookingDate, startTime, endTime, status]);
+export const Booking = {
+  getAll: (callback) => {
+    const query = 'SELECT * FROM booking_sit.booking';
+    db.query(query, callback);
+  },
+  getById: (id, callback) => {
+    const query = 'SELECT * FROM booking WHERE booking_id = ?';
+    db.query(query, [id], callback);
+  },
+  create: (data, callback) => {
+    const query = 'INSERT INTO booking (title, name, email, phonenumber, timestamp) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [data.title, data.name, data.email, data.phonenumber, data.timestamp], callback);
+  },
+  update: (id, data, callback) => {
+    const query = 'UPDATE booking SET title = ?, name = ?, email = ?, phonenumber = ? WHERE booking_id = ?';
+    db.query(query, [data.title, data.name, data.email, data.phonenumber, id], callback);
+  },
+  delete: (id, callback) => {
+    const query = 'DELETE FROM booking WHERE booking_id = ?';
+    db.query(query, [id], callback);
+  }
 };
 
-export const updateBookingStatus = async (bookingId, status) => {
-  const query = `
-    UPDATE bookings
-    SET status = ?
-    WHERE id = ?
-  `;
-  await db.promise(query, [status, bookingId]);
-};
-
-export const getAllBookings = async () => {
-  const query = 'SELECT * FROM bookings';
-  const [rows] = await db.promise(query);
-  return rows;
-};
-
-export const deleteBooking = async (bookingId) => {
-  const query = 'DELETE FROM bookings WHERE id = ?';
-  await db.promise(query, [bookingId]);
-};
+// module.exports = Booking;

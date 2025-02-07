@@ -43,7 +43,7 @@ export const getRoomById = async (roomId) => {
 export const createRoom = async (roomData) => {
     const [response] = await db.promise().query(
         'INSERT INTO booking_sit.room (room_id, room_name, area_name) VALUES (?, ?, ?)',
-        [roomData.room_name, roomData.area_name]
+        [roomData.room_id ,roomData.room_name, roomData.area_name]
     );
     return response;
 }

@@ -1,17 +1,3 @@
-// import express from 'express';
-// import * as bookingController from '../controllers/bookingControllers.js';
-
-// const bookingRouter = express.Router();
-
-// bookingRouter.get('/', bookingController.getAllBookings);
-// bookingRouter.get('/:id', bookingController.getBookingById);
-// // bookingRouter.get('/descriptions', bookingController.getBookingDescriptions);//
-// bookingRouter.post('/', bookingController.createBooking);
-// bookingRouter.put('/:id', bookingController.updateBooking);
-// bookingRouter.delete('/:id', bookingController.deleteBooking);
-
-// export default bookingRouter;
-
 import express from "express";
 import * as bookingController from '../controllers/bookingControllers.js';
 const bookingRoute = express.Router();

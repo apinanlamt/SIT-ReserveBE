@@ -35,14 +35,14 @@ import db from "../config/database.js"
 
 export const getAllBookings = async () => {
     const [response] = await db.promise().query(
-        `SELECT * FROM booking`
+        `SELECT * FROM booking_sit.booking`
     );
     return response;
 }
 
 export const getBookingById = async (bookingId) => {
     const [response] = await db.promise().query(
-        `SELECT * FROM booking
+        `SELECT * FROM booking_sit.booking
         WHERE booking_id = ?`, 
         [bookingId]
     );
@@ -51,7 +51,7 @@ export const getBookingById = async (bookingId) => {
 
 export const createBooking = async (bookingData) => {
     const [response] = await db.promise().query(
-        `INSERT INTO booking 
+        `INSERT INTO booking_sit.booking 
         (name, email, phonenumber, title, description, room_id, date, time_start, time_end, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
@@ -63,7 +63,8 @@ export const createBooking = async (bookingData) => {
             bookingData.room_id,
             bookingData.date,
             bookingData.time_start,
-            bookingData.time_end
+            bookingData.time_end,
+            bookingData.timestamp
         ]
     );
     return response;
@@ -71,7 +72,7 @@ export const createBooking = async (bookingData) => {
 
 export const updateBooking = async (bookingId, bookingData) => {
     const [response] = await db.promise().query(
-        `UPDATE booking 
+        `UPDATE booking_sit.booking 
         SET name = ?, email = ?, phonenumber = ?, title = ?, 
             description = ?, room_id = ?, date = ?, 
             time_start = ?, time_end = ? 
@@ -94,7 +95,7 @@ export const updateBooking = async (bookingId, bookingData) => {
 
 export const deleteBooking = async (bookingId) => {
     const [response] = await db.promise().query(
-        `DELETE FROM booking 
+        `DELETE FROM booking_sit.booking 
         WHERE booking_id = ?`,
         [bookingId]
     );

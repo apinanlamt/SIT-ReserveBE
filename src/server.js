@@ -11,7 +11,7 @@ const port = 3000;
 app.use(logger); // Logger สำหรับบันทึกการเรียกใช้งาน HTTP Request ในเซิร์ฟเวอร์
 app.use(express.json());
 app.use(cors());
-// app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/rooms", roomRoutes);
 

@@ -51,6 +51,45 @@ export const getRoomById = async (req, res) => {
     }
 }
 
+export const getRoomsByArea = async (req, res) => {
+  const { area } = req.params;
+
+  if (!area) {
+      return res.status(400).json({
+          success: false,
+          data: null,
+          message: "Area name is required"
+      });
+  }
+
+  const validAreas = ['CB2', 'LX', 'SIT'];
+  const formattedArea = area.trim();
+
+  if (!validAreas.some(validArea => formattedArea.toUpperCase().includes(validArea.toUpperCase()))) {
+      return res.status(400).json({
+          success: false,
+          data: null,
+          message: "Invalid area name. Must be CB2, LX Building, or SIT Building"
+      });
+  }
+
+  try {
+      const rooms = await roomModel.getRoomsByArea(formattedArea);
+      return res.status(200).json({
+          success: true,
+          data: rooms,
+          message: `Rooms in ${area} retrieved successfully`
+      });
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+          success: false,
+          data: null,
+          message: "Internal server error"
+      });
+  }
+}
+
 export const createRoom = async (req, res) => {
     try {
         const result = await roomModel.createRoom(req.body);

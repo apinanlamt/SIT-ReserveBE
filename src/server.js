@@ -8,9 +8,10 @@ import cors from "cors"
 const app = express ();
 const port = 3000;
 
+app.use(cors());
 app.use(logger); // Logger สำหรับบันทึกการเรียกใช้งาน HTTP Request ในเซิร์ฟเวอร์
 app.use(express.json());
-app.use(cors());
+
 // app.use(express.urlencoded({ extended: true }));
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/rooms", roomRoutes);

@@ -85,7 +85,8 @@ export const getRoomsByArea = async (req, res) => {
       return res.status(500).json({
           success: false,
           data: null,
-          message: "Internal server error"
+          message: "Internal server error",
+          error
       });
   }
 }
@@ -103,7 +104,8 @@ export const createRoom = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"     
+            message: "Internal server error",
+            error    
         });
     }
 }
@@ -136,7 +138,8 @@ export const updateRoom = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }
@@ -169,7 +172,8 @@ export const deleteRoom = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }

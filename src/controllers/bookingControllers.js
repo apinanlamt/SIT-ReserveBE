@@ -13,7 +13,8 @@ export const getAllBookings = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }
@@ -46,7 +47,8 @@ export const getBookingById = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }
@@ -64,7 +66,8 @@ export const createBooking = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }
@@ -97,7 +100,8 @@ export const updateBooking = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }
@@ -130,7 +134,8 @@ export const deleteBooking = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: "Internal server error"
+            message: "Internal server error",
+            error
         });
     }
 }

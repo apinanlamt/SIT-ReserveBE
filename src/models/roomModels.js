@@ -50,8 +50,8 @@ export const createRoom = async (roomData) => {
 
 export const updateRoom = async (roomId, roomData) => {
     const [response] = await db.promise().query(
-        'UPDATE booking_sit.room SET room_name = ?, area_name = ? WHERE room_id = ?',
-        [roomData.room_name, roomData.area_name, roomId]
+        'UPDATE booking_sit.room SET room_id = ?, room_name = ?, area_name = ? WHERE room_id = ?',
+        [roomData.room_id, roomData.room_name, roomData.area_name, roomId]
     );
     return response;
 }
